@@ -35,6 +35,19 @@ const routes = [
     component: () => import(/* webpackChunkName: "listClients" */ '../views/listClients.vue')
   },
   {
+    path: '/Reserva/listar',
+    name: 'listReservations',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "listReservations" */ '../views/listReservations.vue')
+  },
+  {
+    path: '/Reserva/crear',
+    name: 'createReservation',
+    component: () => import(/* webpackChunkName: "createReservation" */ '../views/createReservation.vue')
+  },
+  {
     path: '/grid',
     name: 'grid',
     component: () => import(/* webpackChunkName: "grid" */ '../views/Grid.vue')

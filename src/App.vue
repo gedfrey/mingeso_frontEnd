@@ -12,7 +12,10 @@
             <b-dropdown-item :to="{name: 'createClient'}">Crear Cliente</b-dropdown-item>
             <b-dropdown-item :to="{name: 'listClients'}">Buscar Cliente</b-dropdown-item>
           </b-nav-item-dropdown>
-          <b-nav-item :to="{name: 'grid'}">Grid</b-nav-item>
+          <b-nav-item-dropdown text="Reservas" rigth>
+            <b-dropdown-item :to="{name: 'createReservation'}">Crear Reserva</b-dropdown-item>
+            <b-dropdown-item :to="{name: 'listReservations'}">Buscar Reservas</b-dropdown-item>
+          </b-nav-item-dropdown>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
