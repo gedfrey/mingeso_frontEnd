@@ -132,6 +132,17 @@ export default {
             this.users = list.data;
             this.usersBackUp = list.data;
         },
+        findName: function(){
+            let newList = []
+            for(let user of this.usersBackUp){
+                let positionFirst = item.firstName.indexOf(this.name);
+                let positionLast = item.lastName.indexOf(this.name);
+                let positionDni = item.dniNumber.indexOf(this.name);
+                if(positionFirst !== -1 || positionLast !== -1 || positionDni !== -1){
+                    
+                }
+            }
+        }
 
     }
 }
