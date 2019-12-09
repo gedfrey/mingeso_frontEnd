@@ -149,7 +149,7 @@ export default {
         },
         getRoomsAvaible: async function(){
             this.listRoomAvaible = [];
-            let list = await Vue.axios.post('http://localhost:9000/room/listRoomAvByDate',this.objectDate);
+            let list = await Vue.axios.post('http://35.232.225.161:8080/reserv_hotel/room/listRoomAvByDate',this.objectDate);
             this.listRoomAvaible = list.data;
         },
         getRooms: function(){
@@ -168,7 +168,7 @@ export default {
             this.success.create = null;
         },
         getUsers: async function(){
-            let users = await Vue.axios.get('http://localhost:9000/clients');
+            let users = await Vue.axios.get('http://35.232.225.161:8080/reserv_hotel/clients');
             this.users.push({text: 'Selecciona un usuario', value:null});
             for(let user of users.data){
                 this.users.push({

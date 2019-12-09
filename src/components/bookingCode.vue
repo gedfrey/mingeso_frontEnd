@@ -83,7 +83,7 @@ export default {
                 start: this.addDays(0),
                 end: this.addDays(6)
             };
-            let listRow = await Vue.axios.post('http://localhost:9000/booking/listByDateWithColSpan',object);
+            let listRow = await Vue.axios.post('http://35.232.225.161:8080/reserv_hotel/booking/listByDateWithColSpan',object);
             listRow = listRow.data;
             this.rowTable = listRow;
             this.isLoad = true;

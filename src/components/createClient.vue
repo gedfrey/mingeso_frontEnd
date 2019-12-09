@@ -106,7 +106,7 @@ export default {
     },
     methods: {
         getCountries: async function() {
-            let listCountries = await Vue.axios.get('http://localhost:9000/countries');
+            let listCountries = await Vue.axios.get('http://35.232.225.161:8080/reserv_hotel/countries');
             listCountries = listCountries.data;
             //console.log(listCountries);
             this.countries.push({
@@ -119,7 +119,6 @@ export default {
 
         },
         create: async function(event){
-
             event.preventDefault();
 
             if(this.formData.first_name.length > 3 && this.formData.first_name.length < 21){
@@ -149,7 +148,7 @@ export default {
                 this.error.country = false;
             }
             if(this.error.firstName && this.error.lastName && this.error.email && this.error.dni && this.error.country){
-                let res = await Vue.axios.post('http://localhost:9000/client/user',this.formData);
+                let res = await Vue.axios.post('http://35.232.225.161:8080/reserv_hotel/client/user',this.formData);
                 this.formData.first_name = '',
                 this.formData.last_name = '',
                 this.formData.email = '',
@@ -164,6 +163,7 @@ export default {
                 this.getCountries();
                 this.error.fromBack = res.data;
             }else{
+                console.log('error desconocio')
                 this.error.fromBack = false;
             }
         },

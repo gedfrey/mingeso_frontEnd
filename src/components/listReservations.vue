@@ -124,11 +124,11 @@ export default {
     },
     methods: {
         getPeriods: async function(){
-            let list = await Vue.axios.post('http://localhost:9000/period/listPeriodByDate',this.objectDate);
+            let list = await Vue.axios.post('http://35.232.225.161:8080/reserv_hotel/period/listPeriodByDate',this.objectDate);
             this.listReservations = list.data;
         },
         getUsers: async function(){
-            let list = await Vue.axios.get('http://localhost:9000/clients');
+            let list = await Vue.axios.get('http://35.232.225.161:8080/reserv_hotel/clients');
             this.users = list.data;
             this.usersBackUp = list.data;
         },
