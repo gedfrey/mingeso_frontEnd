@@ -188,7 +188,7 @@ export default {
             
             if(this.user !== null){
 
-                let codeReservation = await Vue.axios.get('http://localhost:9000/new_reservation');
+                let codeReservation = await Vue.axios.get('http://35.232.225.161:8080/reserv_hotel/new_reservation');
                 let errorList = []
                 
                 for(let room of this.rooms){
@@ -201,7 +201,7 @@ export default {
                         dni:this.user
                     };
     
-                    let res = await Vue.axios.post('http://localhost:9000/period/add',objectSend);
+                    let res = await Vue.axios.post('http://35.232.225.161:8080/reserv_hotel/period/add',objectSend);
 
                     if(res.data !== "Success"){
                         errorList.push(res);

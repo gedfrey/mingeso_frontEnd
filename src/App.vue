@@ -7,7 +7,7 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav mr-auto>
-          <b-nav-item :to="{name: 'grid'}">Home</b-nav-item>
+          <!-- <b-nav-item :to="{name: 'grid'}">Home</b-nav-item> -->
           <b-nav-item-dropdown text="Clientes" right>
             <b-dropdown-item :to="{name: 'createClient'}">Crear Cliente</b-dropdown-item>
             <b-dropdown-item :to="{name: 'listClients'}">Buscar Cliente</b-dropdown-item>
