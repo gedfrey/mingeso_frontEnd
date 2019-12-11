@@ -103,7 +103,7 @@ export default {
             rooms: [],
             objectDate: {
                 start: '',
-                end: ''
+                end: new Date()
             },
             user: null,
             users: [],
@@ -144,6 +144,14 @@ export default {
         datePicker
     },
     methods: {
+        currentDate: function(){
+            let today = new Date();
+            let dd = String(today.getDate());
+            let mm = String(today.getMonth()+1);
+            let yyyy = String(today.getFullYear());
+            this.objectDate.start = yyyy+'-'+mm+'-'+dd;
+            this.objectDate.end = yyyy+'-'+mm+'-'+dd;
+        },
         onRowSelected(listRoomAvaible) {
             this.rooms = listRoomAvaible
         },
@@ -192,6 +200,7 @@ export default {
                 let errorList = []
                 
                 for(let room of this.rooms){
+                    
                     let objectSend = {
                         type:"none",
                         start:this.objectDate.start,
@@ -202,8 +211,7 @@ export default {
                     };
     
                     let res = await Vue.axios.post('http://35.232.225.161:8080/reserv_hotel/period/add',objectSend);
-
-                    if(res.data !== "Success"){
+                    if(res.status !== 202){
                         errorList.push(res);
                     }
     
@@ -228,6 +236,7 @@ export default {
     },
     created(){
         this.getUsers();
+        this.currentDate();
     }
 }
 </script>

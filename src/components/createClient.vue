@@ -70,7 +70,15 @@
                     <b-button type="reset" variant="danger">Reiniciar</b-button>
                 </b-form-group>
             </b-form>
-            <b-alert v-show="error.fromBack == true" variant="success" show>Usuario creado con exito</b-alert>
+            <b-alert
+            class="mt-2"
+            :show="error.errorCount"
+            dismissible
+            variant="success"
+            @dismissed="error.errorCount= 0"
+        >
+            Usuario Creado
+        </b-alert>
             <b-alert v-show="error.fromBack == false" variant="danger" show>Error revisa los datos ingresados</b-alert>
         </b-container>
     </div>
@@ -99,7 +107,9 @@ export default {
                 dni: null,
                 email: null,
                 country: null,
-                fromBack:null
+                fromBack:null,
+                errorCount: 0,
+                errorSeconds: 10,
             },
             countries: [],
         }
@@ -108,7 +118,6 @@ export default {
         getCountries: async function() {
             let listCountries = await Vue.axios.get('http://35.232.225.161:8080/reserv_hotel/countries');
             listCountries = listCountries.data;
-            //console.log(listCountries);
             this.countries.push({
                 text:'Selecciona una opción',
                 value: null
@@ -149,19 +158,23 @@ export default {
             }
             if(this.error.firstName && this.error.lastName && this.error.email && this.error.dni && this.error.country){
                 let res = await Vue.axios.post('http://35.232.225.161:8080/reserv_hotel/client/user',this.formData);
-                this.formData.first_name = '',
-                this.formData.last_name = '',
-                this.formData.email = '',
-                this.formData.dni = '',
-                this.formData.country = null,
-                this.error.firstName = null;
-                this.error.lastName = null;
-                this.error.email = null;
-                this.error.dni = null;
-                this.error.country = null;
-                event.target.reset();
-                this.getCountries();
-                this.error.fromBack = res.data;
+                if(res.status = 200){
+                    this.formData.first_name = '',
+                    this.formData.last_name = '',
+                    this.formData.email = '',
+                    this.formData.dni = '',
+                    this.formData.country = null,
+                    this.error.firstName = null;
+                    this.error.lastName = null;
+                    this.error.email = null;
+                    this.error.dni = null;
+                    this.error.country = null;
+                    event.target.reset();
+                    this.getCountries();
+                    this.error.errorCount = this.error.errorSeconds;
+                }else{
+                    this.error.fromBack = res.data;
+                }
             }else{
                 console.log('error desconocio')
                 this.error.fromBack = false;

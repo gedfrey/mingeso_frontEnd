@@ -26,7 +26,7 @@
         <tr v-for="(row,index) of rowTable" :key="index">
             <th scope="row">{{row.room}}</th>
             <td v-for="(item,index2) of row.listRow" :key="index2" style="width: 14.23%" :colspan="item.colSpan" :class="{'table-primary rounded-sm': checkReservation(item.bookingCode)}"><div>
-                <router-link to="/">
+                <router-link :to="{name:'detailReservation',params:{code: item.bookingCode}}">
                 <p class="text-center" v-show="item.bookingCode != 'Sin Reserva'">{{item.bookingCode}}({{item.firstName}})</p>
                 </router-link>
                 </div>
