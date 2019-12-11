@@ -6,34 +6,12 @@
 FROM node:10.15.3-alpine as build
 
 # Set working directory
-WORKDIR /app
+ENV NODE_ENV=development
+ENV PORT=8080
 
-RUN rm -rf /tmp/* /var/cache/apk/*
+WORKDIR /usr/src/app
+COPY package*.json /usr/src/app/
+RUN cd /usr/src/app && CI=true npm install
 
-# Install app dependencies
-COPY . /app
-COPY .env.example ./.env
-RUN npm install
-
-# Run test build
-#RUN npm test
-
-# Generate build
-RUN npm run build
-
-############
-### Prod ###
-############
-
-# Base image
-FROM nginx:alpine
-
-# Copy artifact build from the 'build environment'
-COPY --from=build /app/nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=build /app/dist /usr/share/nginx/html
-
-# Expose port 80
-EXPOSE 80
-
-# Run nginx
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 8080
+CMD ["npm", "run", "serve"]
