@@ -211,7 +211,8 @@ export default {
                     };
     
                     let res = await Vue.axios.post('http://35.232.225.161:8080/reserv_hotel/period/add',objectSend);
-                    if(res.status !== 202){
+                    console.log(res)
+                    if(res.status !== 201){
                         errorList.push(res);
                     }
     
